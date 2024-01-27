@@ -3,7 +3,29 @@
 import { Card, CardBody, CardTitle, Badge } from "reactstrap";
 import PropTypes from "prop-types";
 
-const ResultCard = ({ title, answer }) => {
+const ResultCard = ({ title, answer, winner }) => {
+  const renderWinner = () => {
+    if (winner) {
+      return (
+        <>
+          <h3 style={{ color: "red", fontWeight: "bold", marginRight: 20 }}>
+            Winner:{" "}
+          </h3>
+          <img
+            src={"assets/images/users/" + winner.name + ".png"}
+            className="rounded-circle"
+            alt="avatar"
+            width="45"
+            height="45"
+          />
+          <h3 className="mb-0" style={{ marginLeft: 20 }}>
+            {winner.name}
+          </h3>
+        </>
+      );
+    } else return null;
+  };
+
   return (
     <Card className="text-center">
       {/* <img 
@@ -20,9 +42,16 @@ const ResultCard = ({ title, answer }) => {
           className="bg-primary rounded-pill"
           style={{ color: "white", padding: 5 }}
         >
-          {answer.content}{" "}
-          <Badge className="rounded-circle" color="success">
-            <i className="bi bi-check"></i>
+          {answer.content + "  "}
+          <Badge
+            className="rounded-circle"
+            color={answer.correct ? "success" : "danger"}
+          >
+            {answer.correct ? (
+              <i className="bi bi-check"></i>
+            ) : (
+              <i className="bi bi-x-lg"></i>
+            )}
           </Badge>
         </h3>
         <CardTitle tag="h5">
@@ -30,23 +59,11 @@ const ResultCard = ({ title, answer }) => {
             className="d-flex text-center p-4"
             style={{ justifyContent: "center" }}
           >
-            <h3 style={{ color: "red", fontWeight: "bold", marginRight: 20 }}>
-              Winner:{" "}
-            </h3>
-            <img
-              src="avatars/user1.png"
-              className="rounded-circle"
-              alt="avatar"
-              width="45"
-              height="45"
-            />
-            <h3 className="mb-0" style={{ marginLeft: 20 }}>
-              user1
-            </h3>
+            {renderWinner()}
           </div>
         </CardTitle>
-        <CardTitle tag="h4" style={{ color: "red" }}>
-          +5pts
+        <CardTitle tag="h4" style={{ color: answer.correct ? "red" : "blue" }}>
+          {answer.correct ? "+" : "-"}5pts
         </CardTitle>
       </CardBody>
     </Card>
@@ -56,7 +73,7 @@ const ResultCard = ({ title, answer }) => {
 ResultCard.propTypes = {
   title: PropTypes.string,
   answers: PropTypes.object,
-  handleMarkAnswer: PropTypes.func,
+  winner: PropTypes.object,
 };
 
 export default ResultCard;

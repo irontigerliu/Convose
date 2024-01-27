@@ -16,34 +16,52 @@ const FlashCard = () => {
   const [joinedState, setJoinedState] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [UserData, setUserData] = useState(null);
+  const [winner, setWinner] = useState(null);
 
   useEffect(() => {
-    socket.on("show_result_and_next_question", (param) => {
-      setCurrentAnswer(param.answer);
-      setShowResult(true);
-      setTimeout(() => {
-        setShowResult(false);
-        setCardIndex(param.nextQuestionId);
-      }, 2000);
+    socket.on("users_state_refreshed", (users) => {
+      setUserData(users.filter((user) => user.joined));
     });
+
     socket.on("join_request_success", (user) => {
       setUserProfile(user);
       setJoinedState(true);
     });
-    socket.on("new_user_joined", (users) => {
-      setUserData(users.filter((user) => user.joined));
-    });
+
     socket.on("leave_request_success", () => {
       setJoinedState(false);
+    });
+
+    socket.on("receive_init_question_number", (param) => {
+      setCardIndex(param);
+    });
+
+    socket.on("show_winner_and_next_question", (param) => {
+      setCurrentAnswer(param.answer);
+      setWinner(param.winner);
+      setShowResult(true);
+      setTimeout(() => {
+        setShowResult(false);
+        socket.emit("change_user_point", { plus: true });
+        setWinner(null);
+        setCardIndex(param.nextQuestionId);
+      }, 2000);
     });
   }, []);
 
   const handleMarkAnswer = (param) => {
     if (param.correct) {
-      socket.emit("selected_correct_word", {
+      socket.emit("show_winner_and_next_question", {
         answer: param,
         nextQuestionId: handleGetNextQuestionId(),
       });
+    } else {
+      setCurrentAnswer(param);
+      setShowResult(true);
+      setTimeout(() => {
+        setShowResult(false);
+        socket.emit("change_user_point", { plues: false });
+      }, 2000);
     }
   };
 
@@ -56,7 +74,7 @@ const FlashCard = () => {
   };
 
   const handleGetNextQuestionId = () => {
-    const tempIndex: number = Math.random() * QuestionData.length;
+    const tempIndex: number = Math.floor(Math.random() * QuestionData.length);
     if (tempIndex === selectedCardIndex) {
       return handleGetNextQuestionId();
     } else {
@@ -72,6 +90,7 @@ const FlashCard = () => {
           title={selCardData.question}
           answers={selCardData.answers}
           handleMarkAnswer={handleMarkAnswer}
+          joinedState={joinedState}
         />
       </Col>
     );
@@ -81,7 +100,11 @@ const FlashCard = () => {
     const selCardData = QuestionData[selectedCardIndex];
     return (
       <Col sm="6" md="6" lg="6" xl="6" xxl="6">
-        <ResultCard title={selCardData.question} answer={currentAnswer} />
+        <ResultCard
+          title={selCardData.question}
+          answer={currentAnswer}
+          winner={winner}
+        />
       </Col>
     );
   };
@@ -97,7 +120,7 @@ const FlashCard = () => {
             joinedState={joinedState}
           />
         </Col>
-        {showResult ? handleShowResult() : handleShowCard()}
+        {showResult && joinedState ? handleShowResult() : handleShowCard()}
       </Row>
     </div>
   );

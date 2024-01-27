@@ -2,7 +2,7 @@
 import { Button, Card, CardBody, CardTitle } from "reactstrap";
 import PropTypes from "prop-types";
 
-const QuestionCard = ({ title, answers, handleMarkAnswer }) => {
+const QuestionCard = ({ title, answers, handleMarkAnswer, joinedState }) => {
   return (
     <Card className="text-center">
       <CardTitle tag="h4" className="border-bottom p-3 mb-0">
@@ -17,6 +17,7 @@ const QuestionCard = ({ title, answers, handleMarkAnswer }) => {
               color="info"
               size="lg"
               block
+              disabled={joinedState ? false : true}
               onClick={() => handleMarkAnswer(answer)}
             >
               {answer.content}
@@ -32,6 +33,7 @@ QuestionCard.propTypes = {
   title: PropTypes.string,
   answers: PropTypes.array,
   handleMarkAnswer: PropTypes.func,
+  joinedState: PropTypes.bool,
 };
 
 export default QuestionCard;
