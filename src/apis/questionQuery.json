@@ -1,0 +1,127 @@
+[
+  {
+    "question": "What is the synonym for 'benevolent'?",
+    "answers": [
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Malevolent",
+        "correct": true
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Friendly",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Hostile",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Apathetic",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "Choose the correct sentence",
+    "answers": [
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "He don't like coffee.",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "He doesn't likes coffee.",
+        "correct": true
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "He doesn't like coffee.",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "He not likes coffee.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What is the main idea of the passage? Sarah went to the store to buy groceries, but she forgot her shopping list. In the end, she bought items she didn't need.",
+    "answers": [
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Sarah always forgets her shopping list.",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Sarah bought everything she needed.",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Sarah never goes to the store.",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Sarah went to the store.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "question": "What does the expression 'burning the midnight oil' mean?",
+    "answers": [
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Cooking a late-night snack",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Working late into the night",
+        "correct": true
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Lighting candles at midnight",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "Sleeping early",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "Which sentence is correct?",
+    "answers": [
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "She is good in playing the piano.",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "She is good at playing the piano.",
+        "correct": true
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "She is good with playing the piano.",
+        "correct": false
+      },
+      {
+        "type": "The answer that will be shown at the end of the test when you select this question type is 1st",
+        "content": "She is good for playing the piano.",
+        "correct": false
+      }
+    ]
+  }
+]
